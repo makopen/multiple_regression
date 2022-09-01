@@ -1,1 +1,1 @@
-# multiple_regression
+# streamlitとstatsmodelsを使った重回帰分析アプリ
