@@ -86,7 +86,8 @@ if uploaded_file:
 
             if st.checkbox('detail'):
                 st.write(result_regress(box1,box2,df).summary())
-                st.info("頑健標準誤差を使用",help="https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
+                st.info("頑健標準誤差を使用")
+                st.info("推定結果詳細:https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
         except:
             st.warning("Numerical data only.")
 
