@@ -42,7 +42,7 @@ def func():
 
 
 st.title('Streamlit データ分析 β版')
-st.header('回帰分析')
+st.header('regression analysis')
 
 
 uploaded_file=st.file_uploader("csvファイルアップロード(整理されたデータを使用してください)", type='csv')
@@ -69,7 +69,7 @@ if uploaded_file:
 
     #説明変数を選ぶ
     box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
-    st.sidebar.write(f'number of explanatory variable : {len(box2)}')
+    st.sidebar.write(f'パラメーターの数 : {len(box2)}')
 
 
     st.subheader('Result')
