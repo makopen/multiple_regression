@@ -63,32 +63,32 @@ if uploaded_file:
 
     st.sidebar.subheader('Select columns for analysis\n(数値データのみ)')
 
-    try:
-        #被説明変数を選ぶ
-        box1=st.sidebar.selectbox("被説明変数",columns_list)
 
-        #説明変数を選ぶ
-        box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
-        st.sidebar.write(f'number of explanatory variable : {len(box2)}')
-    except:
-        st.write("数値データのみです")
+    #被説明変数を選ぶ
+    box1=st.sidebar.selectbox("被説明変数",columns_list)
+
+    #説明変数を選ぶ
+    box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
+    st.sidebar.write(f'number of explanatory variable : {len(box2)}')
 
 
     st.subheader('Result')
 
     if box2:
-
-        if st.checkbox('相関行列表示'):
-            show_heatmap(df[box2])
+        try:
+            if st.checkbox('相関行列表示'):
+                show_heatmap(df[box2])
         
 
-        st.subheader(func())
+            st.subheader(func())
 
         ###st.subheader(f'N={len(df)} , Adj_R^2={result_regress(box1,box2,df).rsquared_adj:.3f}')
 
-        if st.checkbox('detail'):
-            st.write(result_regress(box1,box2,df).summary())
-            st.info("頑健標準誤差を使用")
+            if st.checkbox('detail'):
+                st.write(result_regress(box1,box2,df).summary())
+                st.info("頑健標準誤差を使用")
+        else:
+            st.write("数値データのみ")
 
     else:
         st.sidebar.info('変数を入力してください')
