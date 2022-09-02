@@ -76,13 +76,11 @@ if uploaded_file:
 
     if box2:
         try:
-            if st.checkbox('correlation matrix display'):
+            if st.checkbox('Correlation coefficient matrix display'):
                 show_heatmap(df[box2])
         
 
             st.subheader(func())
-
-        ###st.subheader(f'N={len(df)} , Adj_R^2={result_regress(box1,box2,df).rsquared_adj:.3f}')
 
             if st.checkbox('detail'):
                 st.write(result_regress(box1,box2,df).summary())
