@@ -1,8 +1,0 @@
-streamlit
-numpy
-pandas
-plotly.express
-statsmodels.api
-seaborn
-matplotlib.pyplot
-japanize_matplotlib
