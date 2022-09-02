@@ -63,12 +63,15 @@ if uploaded_file:
 
     st.sidebar.subheader('Select columns for analysis\n(数値データのみ)')
 
-    #被説明変数を選ぶ
-    box1=st.sidebar.selectbox("被説明変数",columns_list)
+    tyr:
+        #被説明変数を選ぶ
+        box1=st.sidebar.selectbox("被説明変数",columns_list)
 
-    #説明変数を選ぶ
-    box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
-    st.sidebar.write(f'number of explanatory variable : {len(box2)}')
+        #説明変数を選ぶ
+        box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
+        st.sidebar.write(f'number of explanatory variable : {len(box2)}')
+     except:
+        st.write("数値データのみです")
 
 
     st.subheader('Result')
