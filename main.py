@@ -88,7 +88,7 @@ if uploaded_file:
                 st.write(result_regress(box1,box2,df).summary())
                 st.info("頑健標準誤差を使用")
         except:
-            st.write("数値データのみ")
+            st.warning("数値データのみです")
 
     else:
         st.sidebar.info('変数を入力してください')
