@@ -41,7 +41,7 @@ def func():
     return a
 
 
-st.title('Streamlit Data Analysis Beta Version')
+st.title('Streamlit Data Analysis --β Version--')
 st.header('Regression Analysis')
 
 
@@ -86,8 +86,8 @@ if uploaded_file:
 
             if st.checkbox('detail'):
                 st.write(result_regress(box1,box2,df).summary())
-                st.info("頑健標準誤差を使用")
-                st.write("推定結果詳細:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
+                st.info("Using robust standard errors")
+                st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
         except:
             st.warning("Numerical data only.")
 
