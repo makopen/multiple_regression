@@ -70,7 +70,7 @@ if uploaded_file:
         #説明変数を選ぶ
         box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
         st.sidebar.write(f'number of explanatory variable : {len(box2)}')
-     except:
+    except:
         st.write("数値データのみです")
 
 
