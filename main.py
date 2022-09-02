@@ -63,7 +63,7 @@ if uploaded_file:
 
     st.sidebar.subheader('Select columns for analysis\n(数値データのみ)')
 
-    tyr:
+    try:
         #被説明変数を選ぶ
         box1=st.sidebar.selectbox("被説明変数",columns_list)
 
