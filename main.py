@@ -65,12 +65,12 @@ if uploaded_file:
 
     #被説明変数を選ぶ
     box1=st.sidebar.selectbox("被説明変数",columns_list)
-    st.info("数値データのみ")
+    st.sidebar.info("数値データのみ")
 
     #説明変数を選ぶ
     box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
     st.sidebar.write(f'number of explanatory variable : {len(box2)}')
-    st.info("数値データのみ")
+    st.sidebar.info("数値データのみ")
 
     st.subheader('Result')
 
