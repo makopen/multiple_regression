@@ -46,7 +46,7 @@ st.header('回帰分析')
 
 
 uploaded_file=st.file_uploader("csvファイルアップロード", type='csv')
-use_example_file=st.checkbox('Use example file : wooldridge(wage1)',False,help="These are data from the 1976 Current Population Survey, collected by Henry Farber when he and I were colleagues at MIT in 1988. Data loads lazily.'https://rdrr.io/cran/wooldridge/man/wage1.html'")
+use_example_file=st.checkbox('サンプルデータを使用 : wooldridge(wage1)',False,help="These are data from the 1976 Current Population Survey, collected by Henry Farber when he and I were colleagues at MIT in 1988. Data loads lazily.'https://rdrr.io/cran/wooldridge/man/wage1.html'")
 
 if use_example_file:
     uploaded_file="wooldridge_wage1.csv"
