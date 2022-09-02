@@ -87,7 +87,7 @@ if uploaded_file:
             if st.checkbox('detail'):
                 st.write(result_regress(box1,box2,df).summary())
                 st.info("頑健標準誤差を使用")
-        else:
+        except:
             st.write("数値データのみ")
 
     else:
