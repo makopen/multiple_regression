@@ -67,7 +67,7 @@ if uploaded_file:
 
 
     #被説明変数を選ぶ
-    box1=st.sidebar.selectbox("explained variable",columns_list)
+    box1=st.sidebar.selectbox("Explained variable",columns_list)
 
     #説明変数を選ぶ
     box2=st.sidebar.multiselect("Explanatory variable",columns_list)
