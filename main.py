@@ -45,7 +45,7 @@ st.title('Streamlit Data Analysis Beta Version')
 st.header('Regression Analysis')
 
 
-uploaded_file=st.file_uploader("csvファイルアップロード(整理されたデータを使用してください)", type='csv')
+uploaded_file=st.file_uploader("csv file upload (please use organized data)", type='csv')
 use_example_file=st.checkbox('Use sample data : wooldridge(wage1)',False,help="These are data from the 1976 Current Population Survey, collected by Henry Farber when he and I were colleagues at MIT in 1988. Data loads lazily.'https://rdrr.io/cran/wooldridge/man/wage1.html'")
 
 if use_example_file:
