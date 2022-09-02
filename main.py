@@ -61,16 +61,15 @@ if uploaded_file:
         st.dataframe(df,height=300)
         st.write(df.shape)
 
-    st.sidebar.subheader('Select columns for analysis')
+    st.sidebar.subheader('Select columns for analysis(数値データのみ)')
 
     #被説明変数を選ぶ
     box1=st.sidebar.selectbox("被説明変数",columns_list)
-    st.sidebar.info("数値データのみ")
 
     #説明変数を選ぶ
     box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
     st.sidebar.write(f'number of explanatory variable : {len(box2)}')
-    st.sidebar.info("数値データのみ")
+
 
     st.subheader('Result')
 
