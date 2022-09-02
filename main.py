@@ -18,8 +18,10 @@ def result_regress(Y,X,data):
         X_values.append(X[i])
 
     X_values=sm.add_constant(data[X_values])
-    res=sm.OLS(data[Y],X_values).fit(cov_type="HC3",use_t=True)
-
+    if robust:
+        res=sm.RLM(data[Y],X_values, M=sm.robust.norms.HuberT()).fit()
+    else:
+        res=sm.OLS(data[Y],X_values).fit()
     return res
 
 #相関行列表示
@@ -71,29 +73,25 @@ if uploaded_file:
     box2=st.sidebar.multiselect("Explanatory variable",columns_list)
     st.sidebar.write(f'Number of parameters : {len(box2)}')
 
+    robust=st.sidebar.checkbox("use robust standard errors")
 
     st.subheader('Result')
 
     if box2:
-        try:
-            if st.checkbox('Correlation coefficient matrix display'):
-                show_heatmap(df[box2])
+
+        if st.checkbox('Correlation coefficient matrix display'):
+            show_heatmap(df[box2])
         
+        st.subheader(func())
 
-            st.subheader(func())
-
-            if st.checkbox('Estimation Result Details'):
-                st.write(result_regress(box1,box2,df).summary())
+        if st.checkbox('Estimation Result Details'):
+            st.write(result_regress(box1,box2,df).summary())
+            if robust:
                 st.info("Using robust standard errors")
-                st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
-        except:
-            st.warning("Numerical data only.")
+            st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
+
 
     else:
         st.sidebar.info('Please enter variables')
 else:
     st.info('Please upload your data.') 
-
-
-        
-
