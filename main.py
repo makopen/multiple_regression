@@ -61,7 +61,7 @@ if uploaded_file:
         st.dataframe(df,height=300)
         st.write(df.shape)
 
-    st.sidebar.subheader('Select columns for analysis(数値データのみ)')
+    st.sidebar.subheader('Select columns for analysis\n(数値データのみ)')
 
     #被説明変数を選ぶ
     box1=st.sidebar.selectbox("被説明変数",columns_list)
