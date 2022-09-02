@@ -9,7 +9,7 @@ import japanize_matplotlib
 
 #ページ設定
 st.set_page_config(
-page_title="回帰分析app", page_icon="📊")
+page_title="Regression Analysis App", page_icon="📊")
 
 #回帰の結果出力
 def result_regress(Y,X,data):
@@ -41,12 +41,12 @@ def func():
     return a
 
 
-st.title('Streamlit データ分析 β版')
-st.header('regression analysis')
+st.title('Streamlit Data Analysis Beta Version')
+st.header('Regression Analysis')
 
 
 uploaded_file=st.file_uploader("csvファイルアップロード(整理されたデータを使用してください)", type='csv')
-use_example_file=st.checkbox('サンプルデータを使用 : wooldridge(wage1)',False,help="These are data from the 1976 Current Population Survey, collected by Henry Farber when he and I were colleagues at MIT in 1988. Data loads lazily.'https://rdrr.io/cran/wooldridge/man/wage1.html'")
+use_example_file=st.checkbox('Use sample data : wooldridge(wage1)',False,help="These are data from the 1976 Current Population Survey, collected by Henry Farber when he and I were colleagues at MIT in 1988. Data loads lazily.'https://rdrr.io/cran/wooldridge/man/wage1.html'")
 
 if use_example_file:
     uploaded_file="wooldridge_wage1.csv"
@@ -61,7 +61,7 @@ if uploaded_file:
         st.dataframe(df,height=300)
         st.write(df.shape)
 
-    st.sidebar.subheader('Select columns for analysis\n(数値データのみ)')
+    st.sidebar.subheader('Select columns for analysis\n(Numerical data only)')
 
 
     #被説明変数を選ぶ
@@ -69,14 +69,14 @@ if uploaded_file:
 
     #説明変数を選ぶ
     box2=st.sidebar.multiselect("説明変数(複数可)",columns_list)
-    st.sidebar.write(f'パラメーターの数 : {len(box2)}')
+    st.sidebar.write(f'Number of parameters : {len(box2)}')
 
 
     st.subheader('Result')
 
     if box2:
         try:
-            if st.checkbox('相関行列表示'):
+            if st.checkbox('correlation matrix display'):
                 show_heatmap(df[box2])
         
 
@@ -88,12 +88,12 @@ if uploaded_file:
                 st.write(result_regress(box1,box2,df).summary())
                 st.info("頑健標準誤差を使用")
         except:
-            st.warning("数値データのみです")
+            st.warning("Numerical data only.")
 
     else:
-        st.sidebar.info('変数を入力してください')
+        st.sidebar.info('Please enter variables')
 else:
-    st.info('データをアップロードしてください。') 
+    st.info('Please upload your data.') 
 
 
         
