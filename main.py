@@ -78,17 +78,19 @@ if uploaded_file:
     st.subheader('Result')
 
     if box2:
-
-        if st.checkbox('Correlation coefficient matrix display'):
-            show_heatmap(df[box2])
+        try:
+            if st.checkbox('Correlation coefficient matrix display'):
+                show_heatmap(df[box2])
         
-        st.subheader(func())
+            st.subheader(func())
 
-        if st.checkbox('Estimation Result Details'):
-            st.write(result_regress(box1,box2,df).summary())
-            if robust:
-                st.info("Using robust standard errors")
-            st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
+            if st.checkbox('Estimation Result Details'):
+                st.write(result_regress(box1,box2,df).summary())
+                if robust:
+                    st.info("Using robust standard errors")
+                st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
+        except:
+            st.warning("Valid only for numerical data")
 
 
     else:
