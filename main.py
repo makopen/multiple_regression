@@ -82,7 +82,7 @@ if uploaded_file:
 
             st.subheader(func())
 
-            if st.checkbox('detail'):
+            if st.checkbox('Estimation Result Details'):
                 st.write(result_regress(box1,box2,df).summary())
                 st.info("Using robust standard errors")
                 st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
