@@ -41,7 +41,7 @@ def func():
     return a
 
 
-st.title('Streamlit データ分析')
+st.title('Streamlit データ分析 β版')
 st.header('回帰分析')
 
 
