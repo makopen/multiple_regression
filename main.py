@@ -13,15 +13,18 @@ page_title="Regression Analysis App", page_icon="📊")
 
 #回帰の結果出力
 def result_regress(Y,X,data):
-    X_values=[]
-    for i in range(len(X)):
-        X_values.append(X[i])
-
-    X_values=sm.add_constant(data[X_values])
-    if robust:
-        res=sm.RLM(data[Y],X_values, M=sm.robust.norms.HuberT()).fit()
+    if log_trans:
+        y_data=np.log(data[Y])
+        x_data=np.log(data[X])
     else:
-        res=sm.OLS(data[Y],X_values).fit()
+        y_data=data[Y]
+        x_data=data[X]
+    X_values=sm.add_constant(x_data)
+    
+    if robust:
+        res=sm.RLM(y_data,X_values, M=sm.robust.norms.HuberT()).fit()
+    else:
+        res=sm.OLS(y_data,X_values).fit()
     return res
 
 #相関行列表示
@@ -32,12 +35,18 @@ def show_heatmap(df):
 
 #回帰式表示
 def func():
-    a=[box1,'=',round(result_regress(box1,box2,df).params[0],2)]
+    if log_trans:
+        a=[f'log({box1})','=',round(result_regress(box1,box2,df).params[0],2)]
+    else:
+        a=[box1,'=',round(result_regress(box1,box2,df).params[0],2)]
     for i in range(1,len(box2)+1):
         if result_regress(box1,box2,df).params[i]>0:
             a.append("+")
-        a.append(round(result_regress(box1,box2,df).params[i],2))
-        a.append(box2[i-1])
+            a.append(round(result_regress(box1,box2,df).params[i],2))
+            if log_trans:
+                a.append(f'log({box2[i-1]})')
+            else:    
+                a.append(box2[i-1])
     a.append("+u")
     a=' '.join(map(str,a))
     return a
@@ -67,13 +76,14 @@ if uploaded_file:
 
 
     #被説明変数を選ぶ
-    box1=st.sidebar.selectbox("Explained variable",columns_list)
+    box1=st.sidebar.selectbox("explained variable",columns_list)
 
     #説明変数を選ぶ
     box2=st.sidebar.multiselect("Explanatory variable",columns_list)
     st.sidebar.write(f'Number of parameters : {len(box2)}')
 
     robust=st.sidebar.checkbox("use robust standard errors")
+    log_trans=st.sidebar.checkbox("Logarithmic transfomation")
 
     st.subheader('Result')
 
@@ -81,7 +91,7 @@ if uploaded_file:
         try:
             if st.checkbox('Correlation coefficient matrix display'):
                 show_heatmap(df[box2])
-        
+
             st.subheader(func())
 
             if st.checkbox('Estimation Result Details'):
@@ -90,8 +100,7 @@ if uploaded_file:
                     st.info("Using robust standard errors")
                 st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
         except:
-            st.warning("Valid only for numerical data")
-
+            st.warning("Valid only for numerical data or Missing values and zeros cannot be logarithmized")
 
     else:
         st.sidebar.info('Please enter variables')
