@@ -6,10 +6,17 @@ import statsmodels.api as sm
 import seaborn as sns
 import matplotlib.pyplot as plt
 import japanize_matplotlib
+from lang import lang_dict
 
 #ページ設定
 st.set_page_config(
 page_title="Regression Analysis App", page_icon="📊")
+
+if st.checkbox('日本語(Japanese)'):
+    select_lang='ja'
+else:
+    select_lang='en'
+
 
 #回帰の結果出力
 def result_regress(Y,X,data):
@@ -52,12 +59,12 @@ def func():
     return a
 
 
-st.title('Streamlit Data Analysis --β Version--')
-st.header('Regression Analysis')
+st.title(lang_dict[select_lang]['Streamlit Data Analysis --β Version--'])
+st.header(lang_dict[select_lang]['Regression Analysis'])
 
 
-uploaded_file=st.file_uploader("CSV file upload (please use organized data)", type='csv')
-use_example_file=st.checkbox('Use sample data : wooldridge(wage1)',False,help="These are data from the 1976 Current Population Survey, collected by Henry Farber when he and I were colleagues at MIT in 1988. Data loads lazily.'https://rdrr.io/cran/wooldridge/man/wage1.html'")
+uploaded_file=st.file_uploader(lang_dict[select_lang]["CSV file upload (please use organized data)"], type='csv')
+use_example_file=st.checkbox(lang_dict[select_lang]['Use sample data : wooldridge(wage1)'],False,help="These are data from the 1976 Current Population Survey, collected by Henry Farber when he and I were colleagues at MIT in 1988.'https://rdrr.io/cran/wooldridge/man/wage1.html'")
 
 if use_example_file:
     uploaded_file="wooldridge_wage1.csv"
@@ -68,41 +75,41 @@ if uploaded_file:
     columns_list=list(df.columns)
     
     #データ表示
-    if st.checkbox('Data preview'):
+    if st.checkbox(lang_dict[select_lang]['Data preview']):
         st.dataframe(df,height=300)
         st.write(df.shape)
 
-    st.sidebar.subheader('Select columns for analysis\n(Numerical data only)')
+    st.sidebar.subheader(lang_dict[select_lang]['Select variable for analysis\n(Numerical data only)'])
 
 
     #被説明変数を選ぶ
-    box1=st.sidebar.selectbox("explained variable",columns_list)
+    box1=st.sidebar.selectbox(lang_dict[select_lang]["explained variable"],columns_list)
 
     #説明変数を選ぶ
-    box2=st.sidebar.multiselect("Explanatory variable",columns_list)
-    st.sidebar.write(f'Number of parameters : {len(box2)}')
+    box2=st.sidebar.multiselect(lang_dict[select_lang]["Explanatory variable"],columns_list)
+    st.sidebar.write(lang_dict[select_lang]['Number of parameters : ']+str(len(box2)))
 
-    robust=st.sidebar.checkbox("use robust standard errors")
-    log_trans=st.sidebar.checkbox("Logarithmic transfomation")
+    robust=st.sidebar.checkbox(lang_dict[select_lang]["use robust standard errors"])
+    log_trans=st.sidebar.checkbox(lang_dict[select_lang]["Logarithmic transfomation"])
 
-    st.subheader('Result')
+    st.subheader(lang_dict[select_lang]['Result'])
 
     if box2:
         try:
-            if st.checkbox('Correlation coefficient matrix display'):
+            if st.checkbox(lang_dict[select_lang]['Correlation coefficient matrix display']):
                 show_heatmap(df[box2])
 
             st.subheader(func())
 
-            if st.checkbox('Estimation Result Details'):
+            if st.checkbox(lang_dict[select_lang]['Estimation Result Details']):
                 st.write(result_regress(box1,box2,df).summary())
                 if robust:
-                    st.info("Using robust standard errors")
-                st.write("About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html")
+                    st.info(lang_dict[select_lang]["Using robust standard errors"])
+                st.write(lang_dict[select_lang]["About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html"])
         except:
-            st.warning("Valid only for numerical data or Missing values and zeros cannot be logarithmized")
+            st.warning(lang_dict[select_lang]["Valid only for numerical data or Missing values and zeros cannot be logarithmized"])
 
     else:
-        st.sidebar.info('Please enter variables')
+        st.sidebar.info(lang_dict[select_lang]['Please enter variables'])
 else:
-    st.info('Please upload your data.') 
+    st.info(lang_dict[select_lang]['Please upload your data.']) 
