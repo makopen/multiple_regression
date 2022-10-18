@@ -113,3 +113,6 @@ if uploaded_file:
         st.sidebar.info(lang_dict[select_lang]['Please enter variables'])
 else:
     st.info(lang_dict[select_lang]['Please upload your data.']) 
+
+st.subheader(lang_dict[select_lang]["Feedback and Opinion"])
+st.write("https://forms.gle/zEdDaNrSQ4NpPcdi8")
