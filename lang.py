@@ -18,7 +18,8 @@ lang_dict={
         "About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html":"About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html",
         "Valid only for numerical data or Missing values and zeros cannot be logarithmized":"Valid only for numerical data or Missing values and zeros cannot be logarithmized",
         'Please enter variables':'Please enter variables',
-        'Please upload your data.':'Please upload your data.'
+        'Please upload your data.':'Please upload your data.',
+        "Feedback and Opinion":"Feedback and Opinion"
     },
     'ja':{
         'Streamlit Data Analysis --β Version--':'Streamlit データ分析--試用版--',
@@ -31,7 +32,7 @@ lang_dict={
         "Explanatory variable":"説明変数",
         'Number of parameters : ':'パラメーター数 : ',
         "use robust standard errors":"頑健標準誤差を使用する",
-        "Logarithmic transfomation":"両対数変換をする",
+        "Logarithmic transfomation":"対数変換をする",
         'Result':'結果',
         'Correlation coefficient matrix display':'相関行列の表示',
         'Estimation Result Details':'推定結果の詳細',
@@ -39,6 +40,7 @@ lang_dict={
         "About statsmodels:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html":"statsmodelsについて:\nhttps://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.html",
         "Valid only for numerical data or Missing values and zeros cannot be logarithmized":"数値データのみ有効です。また欠損値やゼロは対数化不可です",
         'Please enter variables':'変数を入力してください',
-        'Please upload your data.':'データをアップロードしてください'
+        'Please upload your data.':'データをアップロードしてください',
+        "Feedback and Opinion":"感想・意見はこちら"
     }
 }
