@@ -54,7 +54,7 @@ def func():
                 a.append(f'log({box2[i-1]})')
             else:    
                 a.append(box2[i-1])
-    a.append("+u")
+    #a.append("+u")
     a=' '.join(map(str,a))
     return a
 
