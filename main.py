@@ -49,7 +49,7 @@ def func():
     for i in range(1,len(box2)+1):
         if result_regress(box1,box2,df).params[i]>0:
             a.append("+")
-            a.append(round(result_regress(box1,box2,df).params[i],2))
+        a.append(round(result_regress(box1,box2,df).params[i],2))
         if log_trans:
             a.append(f'log({box2[i-1]})')
         else:    
