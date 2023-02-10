@@ -1,1 +1,1 @@
-# streamlitとstatsmodelsを使った重回帰分析アプリ
+# Multiple regression analysis application using streamlit and statsmodels
